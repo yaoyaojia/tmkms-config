@@ -1,0 +1,28 @@
+# Tendermint KMS configuration file
+
+## Chain Configuration
+
+### nubit Network
+
+[[chain]]
+id = "nubit"
+key_format = { type = "bech32", account_key_prefix = "nubitpub", consensus_key_prefix = "nubitvalconspub" }
+state_file = "/root/tmkms/config/state/priv_validator_state.json"
+
+## Signing Provider Configuration
+
+### Software-based Signer Configuration
+
+[[providers.softsign]]
+chain_ids = ["nubit"]
+key_type = "consensus"
+path = "/root/tmkms/config/secrets/priv_validator_key.key"
+
+## Validator Configuration
+
+[[validator]]
+chain_id = "nubit"
+addr = "tcp://0.0.0.0:26659"
+secret_key = "/root/tmkms/config/secrets/kms-identity.key"
+protocol_version = "v0.34"
+reconnect = true
